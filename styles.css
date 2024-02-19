@@ -77,6 +77,15 @@ textarea {
   background-color: #0056b3;
 }
 
+.item {
+  border: 1px solid #ccc; /* Border around the item */
+  padding: 10px; /* Padding inside the item */
+  margin-bottom: 10px; /* Spacing between items */
+  background-color: #f9f9f9; /* Background color of the item */
+  border-radius: 5px; /* Rounded corners for the item */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Box shadow for the item */
+}
+
 @media screen and (min-width: 768px) {
   .column {
     flex: 0 1 calc(33.33% - 20px);

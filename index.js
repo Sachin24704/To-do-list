@@ -36,18 +36,71 @@ function deleteTodo(id) {
 }
 
 // Function to edit a todo item
+// Function to edit a todo item
+// Function to edit a todo item
 function editTodo(id) {
-  // Find the todo with the specified id
-  let todo = todos.find((todo) => todo.id === id);
+  // Find the index of the todo with the specified id
+  const index = todos.findIndex((todo) => todo.id === id);
+  if (index === -1) {
+    console.error(`Todo with id ${id} not found`);
+    return;
+  }
 
-  // Update the todo object with new values
-  todo.title = document.getElementById("title").value;
-  todo.description = document.getElementById("description").value;
-  todo.endDate = document.getElementById("end-date").value;
-  todo.priority = document.getElementById("priority").value;
+  // Get the todo item's elements
+  let titleElement = document.getElementById(`title-${id}`);
+  let descriptionElement = document.getElementById(`description-${id}`);
+  let endDateElement = document.getElementById(`end-date-${id}`);
+  let priorityElement = document.getElementById(`priority-${id}`);
+  let editButton = document.getElementById(`edit-button-${id}`);
 
-  // Call a function to update the UI
-  updateUI();
+  if (editButton.textContent === "Edit") {
+    // Switch to edit mode
+    editButton.textContent = "Save";
+
+    // Replace text content with input fields for editing
+    titleElement.innerHTML = `<input type="text" id="edit-title-${id}" value="${titleElement.textContent}" />`;
+    descriptionElement.innerHTML = `<textarea type="text" id="edit-description-${id}" value="${descriptionElement.textContent}" />`;
+    endDateElement.innerHTML = `<input type="date" id="edit-end-date-${id}" value="${endDateElement.textContent}" />`;
+    priorityElement.innerHTML = `<select id="edit-priority-${id}">
+                                      <option value="Low" ${
+                                        priorityElement.textContent === "Low"
+                                          ? "selected"
+                                          : ""
+                                      }>Low</option>
+                                      <option value="Medium" ${
+                                        priorityElement.textContent === "Medium"
+                                          ? "selected"
+                                          : ""
+                                      }>Medium</option>
+                                      <option value="High" ${
+                                        priorityElement.textContent === "High"
+                                          ? "selected"
+                                          : ""
+                                      }>High</option>
+                                    </select>`;
+
+    // Focus on the title input
+    document.getElementById(`edit-title-${id}`).focus();
+  } else if (editButton.textContent === "Save") {
+    // Update todo object in the todos array
+    todos[index].title = document.getElementById(`edit-title-${id}`).value;
+    todos[index].description = document.getElementById(
+      `edit-description-${id}`
+    ).value;
+    todos[index].endDate = document.getElementById(`edit-end-date-${id}`).value;
+    todos[index].priority = document.getElementById(
+      `edit-priority-${id}`
+    ).value;
+
+    // Switch back to normal mode
+    editButton.textContent = "Edit";
+
+    // Update the todo item's content
+    titleElement.textContent = todos[index].title;
+    descriptionElement.textContent = todos[index].description;
+    endDateElement.textContent = todos[index].endDate;
+    priorityElement.textContent = todos[index].priority;
+  }
 }
 
 // Function to complete a todo item
@@ -94,14 +147,14 @@ function updateUI() {
     let listItem = document.createElement("div");
     listItem.className = "item";
     listItem.innerHTML = `
-      <h3>${todo.title}</h3>
-      <p>Description: ${todo.description}</p>
-      <p>End Date: ${todo.endDate}</p>
-      <p>Priority: ${todo.priority}</p>
-      <button onclick="deleteTodo(${todo.id})">Delete</button>
-      <button onclick="editTodo(${todo.id})">Edit</button>
-      <button onclick="completeTodo(${todo.id})">Complete</button>
-    `;
+    <h3 id="title-${todo.id}">${todo.title}</h3>
+    <p>Description: <span id="description-${todo.id}">${todo.description}</span></p>
+    <p>End Date: <span id="end-date-${todo.id}">${todo.endDate}</span></p>
+    <p>Priority: <span id="priority-${todo.id}">${todo.priority}</span></p>
+    <button onclick="deleteTodo(${todo.id})">Delete</button>
+    <button onclick="editTodo(${todo.id})" id="edit-button-${todo.id}">Edit</button>
+    <button onclick="completeTodo(${todo.id})" >Complete</button>
+  `;
 
     // Append the todo item to the appropriate list based on its status
     if (todo.status === "todo") {
