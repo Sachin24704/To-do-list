@@ -34,7 +34,7 @@ function addTodo() {
   priorityInput.value = "";
 
   // Call a function to update the UI
-  updateUI(todos, "all");
+  updateUI(todos, todo.status);
 }
 
 // Function to delete a todo item
@@ -132,18 +132,11 @@ function toggleStatus(id) {
 }
 
 // Function to sort todos based on priority or end date
-function sortTodos(criteria) {
-  // Implement sorting logic based on the criteria
 
-  // Call a function to update the UI
-  updateUI(todos, "all");
-}
 function sortList(status, criteria) {
   // Filter todos based on the specified status
   const filteredTodos = todos.filter((todo) => todo.status === status);
-  console.log("sortlist clicked");
-  const remainingTodos = todos.filter((todo) => todo.status !== status);
-  // Implement sorting logic based on the criteria
+
   if (criteria === "priority") {
     filteredTodos.sort((a, b) => {
       // Compare priority values as strings (low, medium, high)
@@ -155,8 +148,6 @@ function sortList(status, criteria) {
       return new Date(a.endDate) - new Date(b.endDate);
     });
   }
-
-  // Update the original todos array with the sorted todos
 
   // Call a function to update the UI
   updateUI(filteredTodos, status);
