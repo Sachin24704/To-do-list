@@ -34,7 +34,7 @@ function addTodo() {
   priorityInput.value = "";
 
   // Call a function to update the UI
-  updateUI(todos, todo.status);
+  updateUI(todos, "all");
 }
 
 // Function to delete a todo item
