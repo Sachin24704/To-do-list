@@ -14,9 +14,9 @@
         <input type="text" id="title" placeholder="Title" class="input-title" />
         <input type="date" id="end-date" placeholder="End By" />
         <select id="priority" placeholder="Priority">
-          <option value="low">Low</option>
-          <option value="medium">Medium</option>
-          <option value="urgent">Urgent</option>
+          <option value="Low">Low</option>
+          <option value="Medium">Medium</option>
+          <option value="Urgent">Urgent</option>
         </select>
       </div>
       <textarea id="description" placeholder="Description"></textarea>
@@ -25,21 +25,48 @@
 
     <div class="container">
       <div class="column" id="todo-column">
-        <h2>To Do</h2>
+        <div class="header">
+          <h2>To Do</h2>
+          <div class="sort-dropdown">
+            <select onchange="sortList('todo', this.value)">
+              <option value="">Sort by</option>
+              <option value="priority">By Priority</option>
+              <option value="endDate">By End Date</option>
+            </select>
+          </div>
+        </div>
         <div class="todo-list" id="todo-list">
           <!-- Todo items will be dynamically added here -->
         </div>
       </div>
 
       <div class="column" id="doing-column">
-        <h2>Doing</h2>
+        <div class="header">
+          <h2>Doing</h2>
+          <div class="sort-dropdown">
+            <select onchange="sortList('doing', this.value)">
+              <option value="">Sort by</option>
+              <option value="priority">By Priority</option>
+              <option value="endDate">By End Date</option>
+            </select>
+          </div>
+        </div>
         <div class="doing-list" id="doing-list">
           <!-- Doing items will be dynamically added here -->
         </div>
       </div>
 
       <div class="column" id="done-column">
-        <h2>Done</h2>
+        <div class="header">
+          <h2>Done</h2>
+          <div class="sort-dropdown">
+            <select onchange="sortList('done', this.value)">
+              <option value="">Sort by</option>
+              <option value="priority">By Priority</option>
+              <option value="endDate">By End Date</option>
+            </select>
+          </div>
+        </div>
         <div class="done-list" id="done-list">
           <!-- Done items will be dynamically added here -->
         </div>

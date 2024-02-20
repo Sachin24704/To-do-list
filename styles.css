@@ -85,6 +85,22 @@ textarea {
   border-radius: 5px; /* Rounded corners for the item */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Box shadow for the item */
 }
+.header {
+  display: flex; /* Use flexbox */
+  align-items: center; /* Center items vertically */
+  justify-content: space-between; /* Space items evenly */
+}
+
+.sort-dropdown {
+  margin-left: 20px; /* Add margin for spacing */
+}
+
+/* Style for select element */
+select {
+  padding: 5px 10px; /* Add padding */
+  border: 1px solid #ccc; /* Add border */
+  border-radius: 4px; /* Add border-radius */
+}
 
 @media screen and (min-width: 768px) {
   .column {
