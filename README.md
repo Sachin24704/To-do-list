@@ -1,6 +1,6 @@
 # To-do-list
 
-Sure, here's a simple documentation on how to run the project:
+Here's a simple documentation on how to run the project:
 
 ### Running the Project
 
