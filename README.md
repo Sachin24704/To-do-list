@@ -6,7 +6,7 @@ Here's a simple documentation on how to run the project:
 
 #### 1. Clone the Repository
 ```bash
-git clone <repository_url>
+git clone https://github.com/Sachin24704/To-do-list.git
 cd <repository_directory>
 ```
 
